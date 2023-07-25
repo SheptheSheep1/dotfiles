@@ -18,5 +18,5 @@ some way to export snapshots to external storage **should probably sort out in t
 - Kernel panic/crashing randomly (not present in lts kernel as far as I can tell) 
     - To try: use linux-lts Problem: worse performance, especially graphics on the current lts version, best performance on linux-zen 
 - intermittent wifi issues (wifi chip: Intel AX201 linux-driver: iwlwifi) 
-    - To try: iwlwifi-nest drivers for kernel form AUR 
+    - To try: iwlwifi-next drivers for kernel from AUR 
 ## Power Management
