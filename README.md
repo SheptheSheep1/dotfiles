@@ -15,8 +15,8 @@ Swap: Swap on RAM or ZRAM used to compress items in memory as swap
 snapper with automated pacman hooks to make pre and post transaction hooks to make BTRFS snapshots \
 some way to export snapshots to external storage **should probably sort out in the future** could use exporting snapper 
 ## Problems w/ current setup 
-- Kernel panic/crashing randomly (not present in lts kernel as far as I can tell) \
-    - To try: use linux-lts Problem: worse performance, especially graphics on the current lts version, best performance on linux-zen \
-- intermittent wifi issues (wifi chip: Intel AX201 linux-driver: iwlwifi) \
+- Kernel panic/crashing randomly (not present in lts kernel as far as I can tell) 
+    - To try: use linux-lts Problem: worse performance, especially graphics on the current lts version, best performance on linux-zen 
+- intermittent wifi issues (wifi chip: Intel AX201 linux-driver: iwlwifi) 
     - To try: iwlwifi-nest drivers for kernel form AUR 
 ## Power Management
