@@ -15,7 +15,7 @@ export ZSH="$HOME/.oh-my-zsh"
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
-#ZSH_THEME="powerlevel10k/powerlevel10k"
+ZSH_THEME="powerlevel10k/powerlevel10k"
 
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
@@ -80,6 +80,9 @@ export ZSH="$HOME/.oh-my-zsh"
 plugins=(git
 	zsh-autosuggestions
 	zsh-syntax-highlighting
+	zsh-vi-mode
+	k
+	history
 	zsh-history-substring-search)
 
 source $ZSH/oh-my-zsh.sh
@@ -111,10 +114,9 @@ source $ZSH/oh-my-zsh.sh
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 bindkey '^[[A' history-substring-search-up
 bindkey '^[[B' history-substring-search-down
-
+#bindkey '^[OA' history-substring-search-up
+#bindkey '^[OB' history-substring-search-down
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
-
-#powerline
-powerline-daemon -q
-. /usr/share/powerline/bindings/zsh/powerline.zsh
+# powerlevel 10k theme
+source /usr/share/zsh-theme-powerlevel10k/powerlevel10k.zsh-theme
