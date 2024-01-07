@@ -1,0 +1,22 @@
+ # prefix key binding
+ unbind-key C-b
+ set-option -g prefix C-q
+ bind-key C-q send-prefix
+ # powerline
+ source /usr/share/powerline/bindings/tmux/powerline.conf
+ # mouse mode
+ set -g mouse on
+ # split panes
+ bind | split-window -h
+ bind - split-window -v
+ unbind '"'
+ unbind %
+ # faster pane switching
+bind -n M-Left select-pane -L
+bind -n M-Right select-pane -R
+bind -n M-Up select-pane -U
+bind -n M-Down select-pane -D
+set-option -g mouse on
+setw -g mode-keys vi
+set-option -s set-clipboard off
+bind-key -T copy-mode-vi MouseDragEnd1Pane send-keys -X copy-pipe-and-cancel "wl-copy"
