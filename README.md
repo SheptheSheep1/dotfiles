@@ -5,6 +5,13 @@ The system this setup is running on is a Thinkpad X1 Carbon Gen 9, other than th
 My conf files, mostly for CLI software \
 *WIP* \
 Currently conf files for Neovim, tmux and zsh/oh-my-zsh 
+### Neovim
+- Uses LSP-Zero for easy LSP setup, Mason as package manager
+### Tmux
+- Uses customized gruvbox tmux statusbar
+- tpm as package manager (probably not necessary)
+### Alacritty
+- Uses old yaml config and gruvbox-dark theme, probably will migrate to toml at some point
 ## EFI System Partition 
 ESP config: Secure Boot + EFISTUB + Unifed Kernel Image + LUKS2 
 ## Disk Partitions 
@@ -17,6 +24,7 @@ some way to export snapshots to external storage **should probably sort out in t
 ## Problems w/ current setup 
 - Kernel panic/crashing randomly (not present in lts kernel as far as I can tell) 
     - To try: use linux-lts Problem: worse performance, especially graphics on the current lts version, best performance on linux-zen 
+- After running variations of this setup for a while, I foudn this problem was not necessarily a kernel panic or random crashes, I did not have enough swap (swap on zram, in my case), so the solution was to increase the zram swap size or just make a big swapfile
 - intermittent wifi issues (wifi chip: Intel AX201 linux-driver: iwlwifi) 
     - To try: iwlwifi-next drivers for kernel from AUR 
 ## Power Management
