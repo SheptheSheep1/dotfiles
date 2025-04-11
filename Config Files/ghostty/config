@@ -1,0 +1,18 @@
+# theme
+theme = GruvboxDark
+
+# font
+font-family = "FiraCodeNerdFont"
+font-size = 11
+
+# command
+initial-command = "tmux attach || tmux"
+command = "tmux"
+
+# keybinds
+keybind = f11=toggle_fullscreen
+
+# window decorations
+window-decoration = false
+window-height = 1000000
+window-width = 1000000
