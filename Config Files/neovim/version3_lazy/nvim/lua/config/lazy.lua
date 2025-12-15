@@ -39,6 +39,16 @@ require("lazy").setup({
 		-- import your plugins
 		--{ import = "plugins" },
 		{ "ellisonleao/gruvbox.nvim", priority = 1000 , config = true, opts = ...},
+		-- {
+		-- 	"OXY2DEV/markview.nvim",
+		-- 	lazy = false,
+
+		-- 	-- For blink.cmp's completion
+		-- 	-- source
+		-- 	-- dependencies = {
+		-- 	--     "saghen/blink.cmp"
+		-- 	-- },
+		-- },
 		{
 			'nvim-telescope/telescope.nvim', tag = '0.1.8',
 			dependencies = { 'nvim-lua/plenary.nvim' }
@@ -61,10 +71,11 @@ require("lazy").setup({
 				local configs = require("nvim-treesitter.configs")
 
 				configs.setup({
-					ensure_installed = { "c", "lua", "vim", "vimdoc", "query", "elixir", "heex", "javascript", "html" , "markdown", "markdown_inline", "query", "html"},
+					ensure_installed = { "c", "lua", "vim", "vimdoc", "query", "elixir", "heex", "javascript", "html" , "markdown", "markdown_inline", "query"},
 					sync_install = false,
 					highlight = {
 						enable = true,
+						disable = {"latex"},
 					},
 					ignore_install = { "latex" },
 					indent = { enable = true },
@@ -173,7 +184,9 @@ require("lazy").setup({
 			dependencies = {
 				'nvim-treesitter/nvim-treesitter',
 			},
-			opts = {}
+			opts = {
+				filetypes = {'markdown'},
+			}
 
 			-- The build is already done by default in lazy.nvim, so you don't need
 			-- the next line, but you can use the command `:MdMath build` to rebuild
@@ -181,9 +194,8 @@ require("lazy").setup({
 			-- build = ':MdMath build'
 		},
 		{
-			"epwalsh/obsidian.nvim",
-			version = "*",  -- recommended, use latest release instead of latest commit
-			cmd = {"Obsidian"},
+			"obsidian-nvim/obsidian.nvim",
+			version = "*", -- recommended, use latest release instead of latest commit
 			lazy = true,
 			ft = "markdown",
 			-- Replace the above line with this if you only want to load obsidian.nvim for markdown files in your vault:
@@ -195,22 +207,76 @@ require("lazy").setup({
 			--   "BufNewFile path/to/my-vault/*.md",
 			-- },
 			dependencies = {
+				-- Required.
 				"nvim-lua/plenary.nvim",
+
+				-- see above for full list of optional dependencies ☝️
 			},
+			---@module 'obsidian'
+			---@type obsidian.config.ClientOpts
 			opts = {
 				workspaces = {
 					{
 						name = "personal",
-						path = "~/Documents/vaults/personal",
+						path = "~/vaults/personal",
 					},
-					{
-						name = "school",
-						path = "~/Documents/vaults/school",
-					},
+					-- {
+					-- 	name = "work",
+					-- 	path = "~/vaults/work",
+					-- },
 				},
+				legacy_commands = false,
+
+
 			},
 		},
+		{
+			"folke/snacks.nvim",
+			---@type snacks.Config
+			opts = {
+				image = {
+					resolve = function(path, src)
+						if require("obsidian.api").path_is_note(path) then
+							return require("obsidian.api").resolve_image_path(src)
+						end
+					end,
+				}
+			}
+		},
 		{"mbbill/undotree"},
+		{
+			'brianhuster/live-preview.nvim',
+			dependencies = {
+				'nvim-telescope/telescope.nvim',
+			},
+		},
+		{
+			"ibhagwan/fzf-lua",
+			-- optional for icon support
+			dependencies = { "nvim-tree/nvim-web-devicons" },
+			-- or if using mini.icons/mini.nvim
+			-- dependencies = { "nvim-mini/mini.icons" },
+			opts = {}
+		},
+		{ -- This plugin
+			"Zeioth/compiler.nvim",
+			cmd = {"CompilerOpen", "CompilerToggleResults", "CompilerRedo"},
+			dependencies = { "stevearc/overseer.nvim", "nvim-telescope/telescope.nvim" },
+			opts = {},
+		},
+		{ -- The task runner we use
+			"stevearc/overseer.nvim",
+			commit = "6271cab7ccc4ca840faa93f54440ffae3a3918bd",
+			cmd = { "CompilerOpen", "CompilerToggleResults", "CompilerRedo" },
+			opts = {
+				task_list = {
+					direction = "bottom",
+					min_height = 25,
+					max_height = 25,
+					default_detail = 1
+				},
+			},
+		}
 	},
 	-- Configure any other settings here. See the documentation for more details.
 	-- colorscheme that will be used when installing plugins.
@@ -262,3 +328,4 @@ require('lualine').setup {
   inactive_winbar = {},
   extensions = {}
 }
+require('livepreview.config').set()

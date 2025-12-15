@@ -63,7 +63,7 @@ cmp.setup({
 })
 
 -- in a markdown file: search for json, then tex or anything else you'd like it to.
-require("luasnip").filetype_extend("markdown", { "json", "tex" })
+require("luasnip").filetype_extend("markdown", { "json", "tex" }, "tex")
 
 
 vim.keymap.set({"i", "s"}, "<C-E>", function()
